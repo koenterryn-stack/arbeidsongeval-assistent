@@ -144,6 +144,10 @@
   .nine li::before{content:counter(n); font-family:var(--serif); font-weight:700; color:var(--gold); font-size:18px; flex:none; width:22px; text-align:right;}
   .nine .lab{font-weight:500;}
   .nine .fill{color:var(--muted); font-size:13px;}
+  .nine-input{margin-top:5px; width:100%; max-width:440px; font-family:var(--sans); font-size:14px;
+    color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:0; padding:7px 9px;}
+  .nine-input:focus{outline:2px solid var(--gold-soft); border-color:var(--gold);}
+  .nine-note{font-size:12.5px; color:var(--muted); margin:0 0 10px;}
   .linkcard{display:flex; gap:14px; align-items:center; border:1px solid var(--line); background:#fbf8f1; padding:14px 16px; margin-top:16px;}
   .linkcard .big{font-family:var(--serif); font-weight:700; font-size:18px;}
   .linkcard a{color:var(--tert);}
@@ -340,6 +344,7 @@
     </p>
     <div id="h5" class="herkpanel"><b>Herkomst (wet):</b> art. I.6-5 Codex — <code>WET-CODEX-I-232</code>; voorlopig verslag binnen 10 dagen: art. I.6-6 (<code>WET-CODEX-I-233</code>). Document: <code>DOC-EAO-VERSLAG</code>.</div>
     <div class="card">
+      <p class="nine-note">Punt 1–6 vullen zich vanzelf uit je werk hierboven. Punt 7, 8 en 9 vul je hier zelf in — het zijn namen, dus ze blijven <b>lokaal</b> (komen nooit in DP).</p>
       <ul class="nine" id="nine"></ul>
       <div class="linkcard noprint">
         <div>
@@ -531,9 +536,9 @@ const NINE = [
  ["Primaire, secundaire en tertiaire oorzaken", ()=> countCauses()],
  ["Andere oorzaken (o.a. psychosociaal)", ()=> state.tree.psy.filter(i=>i.text.trim()).length? state.tree.psy.filter(i=>i.text.trim()).length+' genoteerd':''],
  ["Aanbevelingen om herhaling te voorkomen", ()=> Object.values(state.maatr).filter(m=>m.maatregel&&m.maatregel.trim()).length? Object.values(state.maatr).filter(m=>m.maatregel&&m.maatregel.trim()).length+' maatregel(en)':''],
- ["Identificatie van personen/diensten die bijdroegen", ()=> ''],
- ["Identificatie van wie het verslag opstelde", ()=> ''],
- ["Identificatie van wie een afschrift kreeg", ()=> '']
+ ["Identificatie van personen/diensten die bijdroegen", null, "bijgedragen", "bv. interne dienst, EDPB, fabrikant arbeidsmiddel"],
+ ["Identificatie van wie het verslag opstelde", null, "opsteller", "Naam en functie (bv. preventieadviseur)"],
+ ["Identificatie van wie een afschrift kreeg", null, "afschrift", "bv. werkgever, Comité PBW, inspectie TWW, EDPB"]
 ];
 function countCauses(){
   const p=state.tree.prim.filter(i=>i.text.trim()).length, s=state.tree.sec.filter(i=>i.text.trim()).length, t=state.tree.tert.filter(i=>i.text.trim()).length;
@@ -542,10 +547,21 @@ function countCauses(){
 }
 function renderNine(){
   const ul=document.getElementById('nine'); ul.innerHTML='';
-  NINE.forEach(([lab,fn])=>{
-    const val=fn(); const li=document.createElement('li');
-    li.innerHTML='<div><div class="lab">'+lab+'</div>'+(val?'<div class="fill">✓ '+escapeHtml(String(val))+'</div>':'<div class="fill">nog in te vullen</div>')+'</div>';
-    ul.appendChild(li);
+  NINE.forEach(([lab,fn,key,ph])=>{
+    const li=document.createElement('li');
+    const wrap=document.createElement('div'); wrap.style.flex='1'; wrap.style.minWidth='0';
+    const l=document.createElement('div'); l.className='lab'; l.textContent=lab; wrap.appendChild(l);
+    if(key){
+      const inp=document.createElement('input'); inp.type='text'; inp.className='nine-input';
+      inp.placeholder=ph||''; inp.value=state.meta[key]||'';
+      inp.addEventListener('input', ()=>{ state.meta[key]=inp.value; });
+      wrap.appendChild(inp);
+    }else{
+      const val=fn(); const d=document.createElement('div'); d.className='fill';
+      d.textContent = val ? '✓ '+String(val) : 'nog in te vullen';
+      wrap.appendChild(d);
+    }
+    li.appendChild(wrap); ul.appendChild(li);
   });
 }
 
