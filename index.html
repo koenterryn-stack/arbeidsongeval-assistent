@@ -390,25 +390,55 @@
 </div>
 
 <script>
+/* Suggesties uit de eigen bibliotheken: primaire oorzaken uit de Gevarencatalogus (GV-) met de
+   ESAW-afwijkende gebeurtenissen; secundaire uit de algemene preventiebeginselen (art. I.2-7) en de
+   checklist; tertiaire uit de Bibliotheek partijen (PT-); psychosociale uit Boek I, Titel 3. */
 const SUGG = {
   prim: [
     "Ontbrekend of niet correct gebruikt collectief beschermingsmiddel (CBM)",
-    "Ontbrekend of niet correct gebruikt persoonlijk beschermingsmiddel (PBM)",
-    "Ontbrekende of kortgesloten beveiliging van een machine"
+    "Ontbrekend of niet gedragen persoonlijk beschermingsmiddel (PBM)",
+    "Ontbrekende of overbrugde machinebeveiliging — gegrepen worden",
+    "Onbeveiligde rand, vloeropening of niet-draagkrachtig dak — val van hoogte",
+    "Ladder, steiger of hoogwerker onveilig opgesteld of gebruikt",
+    "Onstabiel gestapeld of opgeslagen materiaal — vallend voorwerp",
+    "Last niet correct aangeslagen of hijsmiddel/kraan faalde",
+    "Heftruck of voertuig kruiste de looproute — aanrijding",
+    "Gladde, oneffen of versperde loop- of werkvloer — struikelen, uitglijden",
+    "Sleuf, put of grond onvoldoende gestut — bedelving",
+    "Onder spanning gewerkt of elektrisch defect — direct/indirect contact",
+    "Hand- of mechanisch gereedschap defect of verkeerd gebruikt — snijden, projectie",
+    "Gevaarlijke stof vrijgekomen, gelekt of verkeerd gemengd",
+    "Brand of explosie door ontvlambare stof, heet werk of explosieve atmosfeer",
+    "Besloten ruimte met zuurstoftekort of giftige/verstikkende atmosfeer"
   ],
   sec: [
-    "Geen of onvolledige risicoanalyse van de taak",
-    "Ontbrekende of onduidelijke instructie",
+    "Geen of onvolledige risicoanalyse van de taak of werkpost",
+    "Ontbrekende, verouderde of onduidelijke werkinstructie",
+    "Onvoldoende opleiding, onthaal of instructie van de werknemer",
     "Gebrekkig toezicht op de naleving van de instructies",
+    "Geen of verlopen keuring of onderhoud van het arbeidsmiddel",
+    "Geschikt arbeidsmiddel of PBM niet voorzien of niet beschikbaar",
+    "Geen werkvergunning of LMRA voor de risicovolle taak",
+    "Bestaande preventiemaatregel werd niet toegepast of gehandhaafd",
+    "Aankoop of indienststelling zonder voorafgaande risicobeoordeling",
     "Advies van de interne/externe dienst niet (voldoende) opgevolgd"
   ],
   tert: [
-    "Ontwerp- of fabricagefout aan een van buitenaf betrokken arbeidsmiddel",
-    "Niet correct advies van de externe dienst (EDPB)",
-    "Niet correct advies van de externe dienst voor technische controle (EDTC)"
+    "Ontwerp-, fabricage- of leveringsfout aan een arbeidsmiddel of PBM",
+    "Onjuiste of ontbrekende info op het veiligheidsinformatieblad (leverancier)",
+    "Niet correct of onvolledig advies van de externe dienst (EDPB)",
+    "Niet correcte keuring door de externe dienst voor technische controle (EDTC)",
+    "Aannemer of onderaannemer volgde de veiligheidsafspraken niet",
+    "Ontbrekende coördinatie door opdrachtgever of veiligheidscoördinator (bouwplaats)",
+    "Onvolledige of foute werkpostfiche van het uitzendbureau"
   ],
   psy: [
-    "Werkdruk / stress", "Conflict verbonden aan het werk", "Geweld, pesterijen of OSGW"
+    "Hoge werkdruk, tijdsdruk of onderbezetting",
+    "Vermoeidheid door nacht- of ploegenarbeid of lange werkdagen",
+    "Conflict verbonden aan het werk",
+    "Geweld, pesterijen of ongewenst seksueel gedrag (OSGW)",
+    "Alleen werken of sociaal isolement",
+    "Onduidelijke taak- of rolverdeling"
   ]
 };
 const LABELS = {prim:"Primaire oorzaak", sec:"Secundaire oorzaak", tert:"Tertiaire oorzaak", psy:"Psychosociale factor"};
