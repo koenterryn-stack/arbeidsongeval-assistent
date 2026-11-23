@@ -181,6 +181,13 @@
 </style>
 </head>
 <body>
+
+<!-- Netlify Forms: privacyvriendelijke kanaalteller. Enkel kanaal (?via=) + tijdstip; nooit namen, nooit de inhoud van de feitenboom of het verslag. -->
+<form name="teller-arbeidsongeval" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="via">
+  <input type="text" name="tijdstip">
+</form>
+
 <div class="wrap">
 
   <div class="toolbar noprint">
@@ -556,6 +563,19 @@ function hydrate(){
   ['prim','sec','tert','psy'].forEach(renderLayer);
   renderTop(); renderMaatr(); renderNine();
 }
+
+/* ---- Kanaalmeting (?via=): privacyvriendelijk. Telt enkel het kanaal + tijdstip, 1x per sessie.
+        Geen namen, geen IP, geen inhoud van de feitenboom of het verslag. Faalt stil. ---- */
+(function(){
+  try{
+    var via=(new URLSearchParams(location.search).get('via')||'direct').slice(0,60).replace(/[^\w.\-]/g,'');
+    if(!via) via='direct';
+    if(sessionStorage.getItem('ao_via_counted')) return;
+    sessionStorage.setItem('ao_via_counted','1');
+    var body=new URLSearchParams({'form-name':'teller-arbeidsongeval', via:via, tijdstip:new Date().toISOString()});
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()}).catch(function(){});
+  }catch(e){}
+})();
 
 buildSugg(); hydrate();
 </script>
