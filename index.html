@@ -152,6 +152,14 @@
   .linkcard .big{font-family:var(--serif); font-weight:700; font-size:18px;}
   .linkcard a{color:var(--tert);}
 
+  /* Uitnodigingskaartje groep (zoals bij het opleidingsmatrix-cadeautje) */
+  .groupcard{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 20px;
+    border:1px solid var(--gold); background:#fbf6ea; padding:18px 20px; margin:30px 0 0; text-decoration:none; color:var(--ink);}
+  .groupcard:hover{background:#f7efdc;}
+  .gc-h{font-family:var(--serif); font-weight:700; font-size:22px; margin:0 0 4px;}
+  .gc-b{font-size:13.5px; color:var(--ink-soft); max-width:62ch; margin:0;}
+  .gc-cta{font-family:var(--sans); font-weight:500; font-size:13px; letter-spacing:.02em; color:var(--gold); white-space:nowrap;}
+
   /* Achterliggende info */
   details.achter{border:1px solid var(--line); background:var(--card); margin:28px 0 0;}
   details.achter>summary{cursor:pointer; list-style:none; padding:14px 18px; font-family:var(--sans);
@@ -173,7 +181,7 @@
 
   @media(max-width:640px){ .grid{grid-template-columns:1fr} .toolbar{gap:6px} }
   @media print{
-    .toolbar,.sugg,.add,.rm,.herk,.herkpanel{display:none !important}
+    .toolbar,.sugg,.add,.rm,.herk,.herkpanel,.groupcard,.noprint{display:none !important}
     body{background:#fff; color:#000; font-size:12.5px}
     .wrap{padding:0; max-width:none}
     .card,.layer,details.achter{border:1px solid #bbb; break-inside:avoid}
@@ -386,6 +394,14 @@
   <div class="disclaimer">
     Dit overzicht is een persoonlijke interpretatie van de welzijnswetgeving door een preventieadviseur niveau II, bedoeld ter informatie. Het is geen juridisch advies; de officiële Codexteksten blijven de rechtsgrond. Twijfel je of zie je het anders? Laat het weten in de groep, dan sparren we erover.
   </div>
+
+  <a class="groupcard noprint" href="https://www.linkedin.com/groups/42836426/" target="_blank" rel="noopener">
+    <div>
+      <div class="gc-h">Handig?</div>
+      <p class="gc-b">Dit tooltje is een cadeautje van de LinkedIn-groep <b>Welzijnswetgeving | Législation sur le bien-être au travail</b>, een open groep voor iedereen die met welzijn op het werk bezig is. Word lid voor meer gratis hulpmiddelen en kort nieuws over de regelgeving.</p>
+    </div>
+    <span class="gc-cta">Naar de groep op LinkedIn →</span>
+  </a>
 
   <div class="foot">
     <span>Arbeidsongeval-assistent · hulpmiddel bij Codex Boek I, Titel 6</span>
